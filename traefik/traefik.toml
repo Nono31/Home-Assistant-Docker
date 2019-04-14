@@ -1,0 +1,38 @@
+[file]
+watch = true
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+    minVersion = "VersionTLS12"
+    sniStrict = true
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "domain.local"
+watch = true
+exposedByDefault = false
+
+[api]
+entryPoint = "traefik"
+dashboard = true
+debug = true
+
+
+[acme]
+email = "user@domain.com"
+storage = "acme.json"
+onHostRule = true
+entryPoint = "https"
+ [acme.dnsChallenge]
+  provider = "ovh" 
+[[acme.domains]]
+  main = "*.domain.com"
+  sans = ["hass.domain.com"]

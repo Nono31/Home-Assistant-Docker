@@ -1,0 +1,4 @@
+*.db
+node-red/
+traefik/acme/*
+mosquitto/pwfile
